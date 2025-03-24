@@ -5,7 +5,7 @@
 package com.ss.parser.img.conf.js;
 
 import com.ss.config.js.ConfJsApp;
-import com.ss.config.js.ConfJsAppFactory_I;
+import com.ss.config.js.ConfJsAppFactory;
 import com.ss.config.js.ConfJsDbFactory_I;
 import java.util.HashMap;
 
@@ -13,17 +13,18 @@ import java.util.HashMap;
  *
  * @author vlitenko
  */
-public class ConfJsAppFactoryParser implements ConfJsAppFactory_I
-{
+import java.util.HashMap;
+
+public class ConfJsAppFactoryParser extends ConfJsAppFactory {
+
     private static final ConfJsAppFactoryParser instance = new ConfJsAppFactoryParser();
 
     public static ConfJsAppFactoryParser getInstance() {
         return instance;
     }
-    
+
     @Override
     public ConfJsApp newObj(HashMap<String, ConfJsDbFactory_I> factoriesDb) {
         return new ConfJsAppParser();
     }
-    
 }

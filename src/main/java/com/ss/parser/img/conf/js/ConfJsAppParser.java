@@ -4,16 +4,13 @@
  */
 package com.ss.parser.img.conf.js;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.ss.config.js.ExceptConf;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.ss.config.js.ConfJsApp;
 import com.ss.config.js.ConfJsDb;
+import com.ss.config.js.ExceptConf;
 
-/**
- * @author vlitenko
- */
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ConfJsAppParser extends ConfJsApp {
 
@@ -23,64 +20,30 @@ public class ConfJsAppParser extends ConfJsApp {
     private int executorTimeoutSeconds;
     private String downloadPath;
 
-    private int errorsSize;
-    private int errorsInterval;
-    private int errorsSleepInterval;
-
-
     public static final String SERVER_TYPE_DEV = "dev";
     public static final String SERVER_TYPE_TEST = "test";
-    public static final String SERVER_TYPE_PREPROD = "preprod";
-    public static final String SERVER_TYPE_PROD = "prod";
 
     public ConfJsAppParser() {
         super(ConfJsDb.knownDb);
     }
 
-    public ConfJsAppParser(ConfJsApp p_kCopy) {
-        super(p_kCopy);
-    }
-
     @Override
     protected void initApp(JsonNode p_xParser) throws ExceptConf {
         try {
-
             // TECHNICAL
             nameServer = getStringRequired(p_xParser, "name");
             serverType = getStringRequired(p_xParser, "server_type");
-            downloadPath = getStringRequired(p_xParser, "download_path");
-            //ERRORS
-            errorsSize = getIntRequired(p_xParser, "attack_errors_size");
-            errorsInterval = getIntRequired(p_xParser, "attack_errors_interval_sec");
-            errorsSleepInterval = getIntRequired(p_xParser, "attack_errors_sleep_interval_sec");
-            //Pool
             executorPoolSize = getIntRequired(p_xParser, "executor_pool_size");
             executorTimeoutSeconds = getIntRequired(p_xParser, "executor_timeout_seconds");
-
+            downloadPath = getStringRequired(p_xParser, "download_path");
         } catch (RuntimeException ex) {
             throw new ExceptConf("ErrConfA1", "Can't process project configuration",
                     ex.getMessage(), ex);
         }
     }
 
-    public String getNameServer() {
-        return nameServer;
-    }
-
-    public String getServerType() {
-        return serverType;
-    }
-
-    public int getErrorsSize() {
-        return errorsSize;
-    }
-
-    public int getErrorsInterval() {
-        return errorsInterval;
-    }
-
-    public int getErrorsSleepInterval() {
-        return errorsSleepInterval;
+    public String getDownloadPath() {
+        return downloadPath;
     }
 
     public int getExecutorPoolSize() {
@@ -91,14 +54,16 @@ public class ConfJsAppParser extends ConfJsApp {
         return executorTimeoutSeconds;
     }
 
-    public String getDownloadPath() {
-        return downloadPath;
+    public String getNameServer() {
+        return nameServer;
+    }
+
+    public String getServerType() {
+        return serverType;
     }
 
     @Override
     public String toString() {
-        return
-                "serverType=" + serverType + "\n";
-
+        return "serverType" + serverType + "\n";
     }
 }

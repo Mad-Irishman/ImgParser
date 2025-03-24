@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.ss.config.js;
-
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**

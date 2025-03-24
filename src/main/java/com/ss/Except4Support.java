@@ -5,7 +5,6 @@
 package com.ss;
 
 /**
- *
  * @author VL
  */
 public class Except4Support extends Except {
@@ -15,16 +14,17 @@ public class Except4Support extends Except {
     public Except4Support(String errorCode, String message, String extendedMessage, Throwable cause) {
         super(errorCode, message, extendedMessage, cause);
     }
+
     public Except4Support(String errorCode, String message, String extendedMessage) {
         super(errorCode, message, extendedMessage, null);
     }
+
     public Except4Support(String errorCode, String extendedMessage, Throwable cause) {
         super(errorCode, MEG_INTERNAL_ERROR, extendedMessage, cause);
     }
+
     public Except4Support(String errorCode, String extendedMessage) {
         super(errorCode, MEG_INTERNAL_ERROR, extendedMessage, null);
     }
 
-
-    
 }

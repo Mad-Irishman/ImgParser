@@ -8,17 +8,17 @@ import com.ss.config.js.ExceptConf;
 import com.ss.config.js.ConfJs;
 import com.ss.config.js.ExceptCJsNoObject;
 import com.ss.config.js.ExceptCJsUnsupported;
+
 import java.io.FileNotFoundException;
 
 /**
- *
  * @author vlitenko
  */
 public class ConfJsParser extends ConfJs {
 
-    public static final String APP_NAME = "parser_name";
-    private static final ConfJsParser instance = new ConfJsParser();
-    private static final String CONF_FILE_NAME = "conf_parser_serv.json";
+    public static final String APP_NAME = "parser-service";
+    public static final ConfJsParser instance = new ConfJsParser();
+    public static final String CONF_FILE_NAME = "conf_parser_serv.json";
 
     private ConfJsParser() {
         super(APP_NAME, ConfJsAppFactoryParser.getInstance());
@@ -50,16 +50,8 @@ public class ConfJsParser extends ConfJs {
             return (ConfJsAppParser) super.getApp(APP_NAME);
         } catch (ExceptCJsNoObject ex) {
             throw new ExceptConf("ErrConf3", "Can't process project configuration",
-                     String.format("Cant't get app %s in file %s", APP_NAME, CONF_FILE_NAME), ex);
+                    String.format("Cant't get app %s in file %s", APP_NAME, CONF_FILE_NAME), ex);
         }
     }
-
-    public String getDownloadPath() {
-        try {
-            return getApp().getDownloadPath();
-        } catch (Exception ex) {
-            throw new ExceptConf("ErrConf4", "Can't get download path", "Can't retrieve download path from configuration", ex);
-        }
-    }
-
 }
+

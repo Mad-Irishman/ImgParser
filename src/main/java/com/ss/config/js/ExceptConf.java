@@ -4,14 +4,13 @@
  */
 package com.ss.config.js;
 
+
 import com.ss.Except;
 
 /**
- *
  * @author vlitenko
  */
-public class ExceptConf extends Except
-{
+public class ExceptConf extends Except {
     public ExceptConf(String errorCode, String message, String extendedMessage, Throwable cause) {
         super(errorCode, message, extendedMessage, cause);
     }

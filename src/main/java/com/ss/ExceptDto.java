@@ -22,28 +22,26 @@ public class ExceptDto {
         this.id = Math.abs(random.nextLong());
     }
 
-    public String getMessage4Support(Exception exception) 
-    {
+    public String getMessage4Support(Exception exception) {
         StringBuilder sCauseRes = new StringBuilder();
         boolean bFirst = true;
         Throwable xExCurrent = exception;
-        while(xExCurrent.getCause() != null)
-        {
+        while (xExCurrent.getCause() != null) {
             String sCause;
-            if(xExCurrent.getCause() instanceof Except_I)
-                sCause = ((Except_I)xExCurrent.getCause()).getMessage4Support();
+            if (xExCurrent.getCause() instanceof Except_I)
+                sCause = ((Except_I) xExCurrent.getCause()).getMessage4Support();
             else
                 sCause = xExCurrent.getCause().getMessage();
-            if(bFirst)
+            if (bFirst)
                 sCauseRes.append(sCause);
             else
                 sCauseRes.append(", cause: ").append(sCause);
             bFirst = false;
             xExCurrent = xExCurrent.getCause();
         }
-        if(sCauseRes.isEmpty())
+        if (sCauseRes.isEmpty())
             return String.format("Ed%d | %s | %s ", id, code, extendedMessage);
-        
+
         return String.format("Ed%d | %s | %s | cause: [%s]", id, code, extendedMessage, sCauseRes.toString());
     }
 
@@ -58,11 +56,11 @@ public class ExceptDto {
     public String getCodeId() {
         return String.format("Ed%d", id);
     }
-    
-    public String getErrorCode(){
+
+    public String getErrorCode() {
         return code;
     }
-    
+
     public String getMessage4Monitor(Exception p_xEx) {
         return String.format("Ed%d | %s | %s", id, code, p_xEx.getMessage());
     }

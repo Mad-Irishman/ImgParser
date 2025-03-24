@@ -29,7 +29,7 @@ public class ExceptInfoUser extends Exception {
         this.message4support = message4support;
     }
 
-//    public ExceptInfoUser(String message4support) {
+    //    public ExceptInfoUser(String message4support) {
 //        this.message4support = message4support;
 //    }
     public ExceptInfoUser(Map<String, String> errors) {

@@ -3,7 +3,7 @@ package com.ss.parser.img.service;
 import com.ss.ExceptInfoUser;
 import com.ss.config.js.ConfJs;
 import com.ss.parser.img.conf.js.ConfJsParser;
-import com.ss.parser.img.repository.ImageDownloader;
+import com.ss.parser.img.utils.ImageDownloader;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 @Service
 public class ImageService {
@@ -54,7 +53,7 @@ public class ImageService {
     public void processWebsiteImages(String websiteUrl, String downloadDir) throws ExceptInfoUser {
         List<String> imageUrls = fetchImageUrls(websiteUrl);
         if (imageUrls.isEmpty()) {
-            throw new ExceptInfoUser(Collections.singletonMap("error", "Unable to retrieve images from the site."));
+            throw new ExceptInfoUser(Collections.singletonMap(ConfJs.STATE_ERROR, "Unable to retrieve images from the site."));
         }
         downloadImages(imageUrls, downloadDir);
     }

@@ -82,14 +82,11 @@ public class ConfJs extends ConfJsObj
         state = STATE_ERROR;
         apps.clear();
         appsMap.clear();
-        
-        // create a reader
+
         Reader xReader = new BufferedReader(new FileReader(p_sPath, Charset.forName("UTF-8")));
 
-        //create ObjectMapper instance
         ObjectMapper xMapper = new ObjectMapper();
 
-        //read customer.json file into a tree model
         JsonNode xParser;
         try
         {

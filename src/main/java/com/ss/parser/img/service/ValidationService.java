@@ -18,13 +18,15 @@ public class ValidationService {
     }
 
 
-    public void validationUrlFolder(String url, String folderName) throws ExceptInfoUser {
+    public void validationUrl(String url) throws ExceptInfoUser {
         if (!validationUrlFoleder.isValidUrl(url)) {
             throw new ExceptInfoUser(Collections.singletonMap(ConfJs.STATE_ERROR, "Invalid URL. Please enter a valid URL."));
         }
+    }
+
+    public void validationFolder(String folderName) throws ExceptInfoUser {
         if (!validationUrlFoleder.isValidFolderName(folderName)) {
             throw new ExceptInfoUser(Collections.singletonMap(ConfJs.STATE_ERROR, "Invalid folder name. Please avoid special characters: /\\:*?\"<>|"));
         }
     }
-
 }

@@ -1,6 +1,6 @@
 package com.ss.parser.img.service;
 
-import com.ss.Except4SupportDocumented;
+import com.ss.Except4Support;
 import com.ss.ExceptInfoUser;
 import com.ss.config.js.ConfJs;
 import com.ss.parser.img.conf.js.ConfJsParser;
@@ -16,8 +16,7 @@ import java.util.Collections;
 public class FileStorageService {
 
     public void createFolder(String folderName) throws ExceptInfoUser {
-        String downloadPath = ConfJsParser.getInstance().getDownloadPath();
-        Path directoryPath = Paths.get(downloadPath, folderName);
+        Path directoryPath = Paths.get(ConfJsParser.getInstance().getApp().getDownloadPath(), folderName);
 
         if (Files.exists(directoryPath)) {
             throw new ExceptInfoUser(Collections.singletonMap(ConfJs.STATE_ERROR, "The folder already exists"));
@@ -26,7 +25,7 @@ public class FileStorageService {
         try {
             Files.createDirectories(directoryPath);
         } catch (IOException e) {
-            throw new Except4SupportDocumented(
+            throw new Except4Support(
                     "FILE_STORAGE_ERROR",
                     "Error creating folders",
                     "Error while trying to create folder: " + directoryPath.toString(),

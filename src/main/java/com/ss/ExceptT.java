@@ -5,13 +5,11 @@
 package com.ss;
 
 /**
- * 
  * @author Vl
  */
-public class ExceptT extends Exception implements Except_I
-{
+public class ExceptT extends Exception implements Except_I {
     protected ExceptDto data;
-    
+
     public ExceptT(String errorCode, String message, String extendedMessage, Throwable cause) {
         super(message, cause);
         data = new ExceptDto(errorCode, message, extendedMessage);
@@ -20,29 +18,32 @@ public class ExceptT extends Exception implements Except_I
     public ExceptT(String errorCode, String message, String extendedMessage) {
         this(errorCode, message, extendedMessage, null);
     }
-    
+
     @Override
-    public String toString() 
-    {
+    public String toString() {
         return getMessage4Support();
     }
+
     @Override
-    public String getMessage4Support() 
-    {
+    public String getMessage4Support() {
         return data.getMessage4Support(this);
     }
+
     @Override
-    public String getMessage4User() 
-    {
+    public String getMessage4User() {
         return data.getMessage4User(this);
     }
-    
+
     @Override
-    public long getId() {return data.getId();}
-    
-    public String getCodeId() {return data.getCodeId();}
-    
-    public String getMessage4Monitor () {
+    public long getId() {
+        return data.getId();
+    }
+
+    public String getCodeId() {
+        return data.getCodeId();
+    }
+
+    public String getMessage4Monitor() {
         return data.getMessage4Monitor(this);
     }
 }
