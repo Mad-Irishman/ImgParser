@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "comments": "conf file for PARSER server dev",
+  "apps": [
+    {
+      "version": "1.0",
+      "comments": "dev",
+      "name": "parser-service",
+      "server_type": "dev",
+      "download_path": "D:\\Project\\ImgParser\\",
+      "executor_pool_size": 10,
+      "executor_timeout_seconds": 30
+    }
+  ]
+}
