@@ -4,6 +4,8 @@ import com.ss.Except4Support;
 import com.ss.ExceptInfoUser;
 import com.ss.config.js.ConfJs;
 import com.ss.parser.img.service.ImageProcessingFacadeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/download/")
 public class ParserController {
+    private static final Logger logger = LoggerFactory.getLogger(ParserController.class);
 
     private final ImageProcessingFacadeService imageProcessingFacadeService;
 
@@ -37,11 +40,12 @@ public class ParserController {
             return "parserImg";
 
         } catch (ExceptInfoUser e) {
+            logger.error("User error: {}", e.getErrorMessage());
             model.addAttribute(ConfJs.STATE_ERROR, e.getErrorMessage());
             return "parserImg";
         } catch (Except4Support e) {
+            logger.error("Support error: {}", e.getMessage4Support());
             model.addAttribute(ConfJs.STATE_ERROR, e.getMessage4User());
-            System.err.println("Support error: " + e.getMessage4Support());
             return "parserImg";
         }
     }
