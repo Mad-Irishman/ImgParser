@@ -18,17 +18,18 @@ public class ImageDownloader implements Runnable {
     public void run() {
 
         try (InputStream in = new URL(imageUrl).openStream()) {
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+
             try (FileOutputStream out = new FileOutputStream(filePath)) {
 
-                byte[] buffer = new byte[4096];
-                int bytesRead;
                 while (true) {
                     try {
                         if ((bytesRead = in.read(buffer)) == -1) {
                             break;
                         }
                     } catch (IOException e) {
-                        System.err.println("Error while downloading image from URL: " + imageUrl);
+                        System.err.println("Error while reading data from URL: " + imageUrl);
                         break;
                     }
                     try {
@@ -37,13 +38,13 @@ public class ImageDownloader implements Runnable {
                         System.err.println("Error while writing to file: " + filePath);
                     }
                 }
-
             } catch (IOException e) {
-                System.err.println("Error: Failed to create file for writing: " + filePath);
+                System.err.println("Failed to create file for writing: " + filePath);
             }
         } catch (IOException e) {
-            System.err.println("Error: Failed to open stream from URL: " + imageUrl);
+            System.err.println("Failed to open stream from URL: " + imageUrl);
         }
+
 
     }
 }
