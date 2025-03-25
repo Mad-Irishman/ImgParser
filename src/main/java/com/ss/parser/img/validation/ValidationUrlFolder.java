@@ -3,7 +3,7 @@ package com.ss.parser.img.validation;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidationUrlFoleder {
+public class ValidationUrlFolder {
 
     public boolean isValidUrl(String url) {
         String urlRegex = "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$";
